@@ -1,0 +1,6 @@
+{
+  "name": "마케팅맥시마이져 | 병원 전문 마케팅 대행사",
+  "description": "네이버 블로그부터 AI 검색(GEO)까지. 의료법 기준에 맞춰 병원의 매출과 병원만의 브랜딩을 함께 키우는 병원 마케팅 전문 대행사 마케팅맥시마이져입니다.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
