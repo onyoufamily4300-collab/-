@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
-import { PROCESS_STEPS } from '../data/marketingData';
+import { PROCESS_STEPS, COMPANY_INFO } from '../data/marketingData';
 
 interface ProcessSectionProps {
   onStartClick: () => void;
@@ -32,10 +32,13 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({ onStartClick }) 
               key={idx}
               className="border border-[#E3E7D6] rounded-[20px] p-7 flex flex-col gap-3 bg-white hover:border-[#B4D82E] hover:shadow-lg transition-all duration-200 relative group"
             >
-              {/* Step Number Circle */}
+              {/* Step Number Circle with Live Pulse Ring */}
               <div className="flex items-center justify-between">
-                <div className="w-11 h-11 rounded-full bg-[#B4D82E] flex items-center justify-center font-black text-xl text-[#1B1D1A] shadow-xs group-hover:scale-105 transition-transform">
-                  {step.step}
+                <div className="relative">
+                  <div className="w-11 h-11 rounded-full bg-[#B4D82E] flex items-center justify-center font-black text-xl text-[#1B1D1A] shadow-xs group-hover:scale-105 transition-transform relative z-10">
+                    {step.step}
+                  </div>
+                  <span className="absolute inset-0 rounded-full bg-[#B4D82E] animate-ping opacity-35 pointer-events-none" />
                 </div>
                 <span className="text-xs font-bold text-neutral-400">
                   STEP 0{step.step}
@@ -62,13 +65,15 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({ onStartClick }) 
 
         {/* Action Prompt */}
         <div className="mt-12 text-center">
-          <button
-            onClick={onStartClick}
+          <a
+            href={COMPANY_INFO.kakaoChatUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#1B1D1A] hover:bg-black text-white font-extrabold px-8 py-3.5 rounded-full text-base transition-all duration-150 shadow-md cursor-pointer active:scale-95"
           >
             <span>1단계 무료 진단 바로 신청하기</span>
             <ArrowRight className="w-4 h-4 text-[#B4D82E]" />
-          </button>
+          </a>
         </div>
       </div>
     </section>

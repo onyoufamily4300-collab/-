@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, Mail, Clock, CheckCircle2, MessageCircle, AlertCircle } from 'lucide-react';
 import { COMPANY_INFO } from '../data/marketingData';
+import { LiveChatStickerGif } from './animations/LiveChatStickerGif';
+import { AmbientDoctorVideoBg } from './AmbientDoctorVideoBg';
 
 interface ContactSectionProps {
   prefillData?: {
@@ -72,13 +74,19 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefillData }) =
   };
 
   return (
-    <section id="contact" className="bg-[#1B1D1A] text-white">
-      <div className="max-w-[1200px] mx-auto px-6 py-20 lg:py-24">
+    <section id="contact" className="relative bg-[#1B1D1A] text-white overflow-hidden">
+      {/* Ambient Faint Doctor Flash Background */}
+      <AmbientDoctorVideoBg variant="dark" />
+
+      <div className="relative z-10 max-w-[1200px] mx-auto px-6 py-20 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
           {/* Left Column: Contact Copy & Direct Info */}
           <div className="lg:col-span-6 flex flex-col gap-6">
-            <div className="text-[#B4D82E] font-bold text-sm tracking-wider uppercase">
-              CONTACT
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <div className="text-[#B4D82E] font-bold text-sm tracking-wider uppercase">
+                CONTACT
+              </div>
+              <LiveChatStickerGif />
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-[44px] font-black leading-[1.2] tracking-[-0.03em] text-white">
@@ -117,6 +125,20 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefillData }) =
               </div>
               <div className="flex items-center gap-4">
                 <span className="text-[#B4D82E] font-bold w-20 shrink-0">
+                  카카오톡
+                </span>
+                <a
+                  href={COMPANY_INFO.kakaoChatUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-[#FEE500] hover:underline transition-colors inline-flex items-center gap-1"
+                >
+                  <span>오픈채팅 1:1 상담 바로가기</span>
+                  <span className="text-xs">↗</span>
+                </a>
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="text-[#B4D82E] font-bold w-20 shrink-0">
                   상담 시간
                 </span>
                 <span className="text-neutral-300">
@@ -125,23 +147,47 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefillData }) =
               </div>
             </div>
 
-            {/* Fast direct call link banner */}
-            <div className="mt-2 p-5 bg-[#252823] rounded-2xl border border-neutral-800 flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#B4D82E] flex items-center justify-center shrink-0">
-                  <Phone className="w-5 h-5 text-[#1B1D1A]" />
+            {/* Fast direct call & Kakao chat banner */}
+            <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="p-4 bg-[#252823] rounded-2xl border border-neutral-800 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-full bg-[#B4D82E] flex items-center justify-center shrink-0">
+                    <Phone className="w-4 h-4 text-[#1B1D1A]" />
+                  </div>
+                  <div>
+                    <div className="text-[11px] text-[#B4D82E] font-bold">전화 직통 상담</div>
+                    <div className="text-xs font-extrabold text-white">{COMPANY_INFO.phone}</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-xs text-[#B4D82E] font-bold">빠른 직통 상담</div>
-                  <div className="text-sm font-extrabold text-white">{COMPANY_INFO.phone}</div>
-                </div>
+                <a
+                  href={`tel:${COMPANY_INFO.phone}`}
+                  className="text-xs font-bold bg-[#B4D82E] text-[#1B1D1A] px-3 py-1.5 rounded-full hover:bg-[#a5cb23] transition-colors whitespace-nowrap"
+                >
+                  전화
+                </a>
               </div>
-              <a
-                href={`tel:${COMPANY_INFO.phone}`}
-                className="text-xs font-bold bg-[#B4D82E] text-[#1B1D1A] px-4 py-2 rounded-full hover:bg-[#a5cb23] transition-colors whitespace-nowrap"
-              >
-                전화 걸기
-              </a>
+
+              <div className="p-4 bg-[#252823] rounded-2xl border border-neutral-800 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-full bg-[#FEE500] flex items-center justify-center shrink-0">
+                    <svg className="w-4 h-4 fill-[#381E1F]" viewBox="0 0 24 24">
+                      <path d="M12 3C6.477 3 2 6.477 2 10.767c0 2.723 1.777 5.118 4.464 6.442l-.934 3.471c-.083.308.232.553.497.388l4.137-2.617c.594.077 1.206.118 1.836.118 5.523 0 10-3.477 10-7.767S17.523 3 12 3z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-[11px] text-[#FEE500] font-bold">카카오톡 오픈채팅</div>
+                    <div className="text-xs font-extrabold text-white">실시간 빠른 연결</div>
+                  </div>
+                </div>
+                <a
+                  href={COMPANY_INFO.kakaoChatUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-bold bg-[#FEE500] text-[#191919] px-3 py-1.5 rounded-full hover:bg-[#FADA0A] transition-colors whitespace-nowrap"
+                >
+                  채팅
+                </a>
+              </div>
             </div>
           </div>
 

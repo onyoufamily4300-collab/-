@@ -1,29 +1,39 @@
 import React, { useState } from 'react';
 import { Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
-import { AI_PREVIEW_SAMPLES } from '../data/marketingData';
+import { AI_PREVIEW_SAMPLES, COMPANY_INFO } from '../data/marketingData';
+import { HospitalRadarGif } from './animations/HospitalRadarGif';
+import { AmbientDoctorVideoBg } from './AmbientDoctorVideoBg';
 
 interface HeroSectionProps {
   onDiagnoseClick: () => void;
   onExploreClick: () => void;
+  onSelectCategory?: (category: string) => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   onDiagnoseClick,
   onExploreClick,
+  onSelectCategory,
 }) => {
   const [selectedSpecialty, setSelectedSpecialty] = useState(0);
   const currentPreview = AI_PREVIEW_SAMPLES[selectedSpecialty];
 
   return (
-    <section className="bg-[#B4D82E] text-[#1B1D1A] overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-20 lg:py-24">
+    <section className="relative bg-[#B4D82E] text-[#1B1D1A] overflow-hidden">
+      {/* Ambient Faint Doctor Flash Background */}
+      <AmbientDoctorVideoBg variant="lime" />
+
+      <div className="relative z-10 max-w-[1200px] mx-auto px-6 py-16 md:py-20 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
           {/* Left Column: Headlines & Action */}
           <div className="lg:col-span-7 flex flex-col items-start gap-6">
-            {/* Pill Badge */}
-            <div className="inline-flex items-center gap-1.5 bg-white text-[#1B1D1A] px-4 py-1.5 rounded-full text-sm font-bold shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-[#1B1D1A]" />
-              <span>병원 마케팅 전문 대행사</span>
+            {/* Pill Badge & Animated Radar Point */}
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="inline-flex items-center gap-1.5 bg-white text-[#1B1D1A] px-4 py-1.5 rounded-full text-sm font-bold shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-[#1B1D1A]" />
+                <span>병원 마케팅 전문 대행사</span>
+              </div>
+              <HospitalRadarGif />
             </div>
 
             {/* Main Headline */}
@@ -39,12 +49,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3 pt-1 w-full sm:w-auto">
-              <button
-                onClick={onDiagnoseClick}
-                className="w-full sm:w-auto bg-[#1B1D1A] hover:bg-black text-white font-extrabold px-7 py-3.5 rounded-full text-base transition-all duration-150 shadow-md hover:shadow-lg cursor-pointer text-center active:scale-95"
+              <a
+                href={COMPANY_INFO.kakaoChatUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto bg-[#1B1D1A] hover:bg-black text-white font-extrabold px-7 py-3.5 rounded-full text-base transition-all duration-150 shadow-md hover:shadow-lg cursor-pointer text-center active:scale-95 inline-flex items-center justify-center"
               >
                 무료 진단 상담 받기
-              </button>
+              </a>
               <button
                 onClick={onExploreClick}
                 className="w-full sm:w-auto bg-white hover:bg-neutral-50 text-[#1B1D1A] font-extrabold px-7 py-3.5 rounded-full text-base transition-all duration-150 shadow-xs hover:shadow-md cursor-pointer text-center border border-transparent"
@@ -53,20 +65,36 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </button>
             </div>
 
-            {/* Quick Keyword Badges */}
+            {/* Quick Keyword Items */}
             <div className="flex flex-wrap gap-2 pt-2 text-sm font-bold text-[#1B1D1A]">
-              <span className="bg-[#D7EC7A] px-3.5 py-1.5 rounded-full transition-transform hover:scale-105 cursor-default">
+              <button
+                type="button"
+                onClick={() => (onSelectCategory ? onSelectCategory('blog') : onExploreClick())}
+                className="bg-[#D7EC7A] hover:bg-white text-[#1B1D1A] px-4 py-1.5 rounded-full transition-all duration-150 shadow-2xs hover:shadow-xs cursor-pointer font-bold inline-flex items-center active:scale-95"
+              >
                 네이버 블로그
-              </span>
-              <span className="bg-[#D7EC7A] px-3.5 py-1.5 rounded-full transition-transform hover:scale-105 cursor-default">
-                AI 검색 GEO
-              </span>
-              <span className="bg-[#D7EC7A] px-3.5 py-1.5 rounded-full transition-transform hover:scale-105 cursor-default">
-                인스타 릴스
-              </span>
-              <span className="bg-[#D7EC7A] px-3.5 py-1.5 rounded-full transition-transform hover:scale-105 cursor-default">
+              </button>
+              <button
+                type="button"
+                onClick={() => (onSelectCategory ? onSelectCategory('geo') : onExploreClick())}
+                className="bg-[#D7EC7A] hover:bg-white text-[#1B1D1A] px-4 py-1.5 rounded-full transition-all duration-150 shadow-2xs hover:shadow-xs cursor-pointer font-bold inline-flex items-center active:scale-95"
+              >
+                GEO 마케팅
+              </button>
+              <button
+                type="button"
+                onClick={() => (onSelectCategory ? onSelectCategory('branding') : onExploreClick())}
+                className="bg-[#D7EC7A] hover:bg-white text-[#1B1D1A] px-4 py-1.5 rounded-full transition-all duration-150 shadow-2xs hover:shadow-xs cursor-pointer font-bold inline-flex items-center active:scale-95"
+              >
                 병원 브랜딩
-              </span>
+              </button>
+              <button
+                type="button"
+                onClick={() => (onSelectCategory ? onSelectCategory('place') : onExploreClick())}
+                className="bg-[#D7EC7A] hover:bg-white text-[#1B1D1A] px-4 py-1.5 rounded-full transition-all duration-150 shadow-2xs hover:shadow-xs cursor-pointer font-bold inline-flex items-center active:scale-95"
+              >
+                네이버 플레이스 마케팅
+              </button>
             </div>
           </div>
 

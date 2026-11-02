@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, CheckCircle2, ArrowRight, ShieldCheck, Target, Zap } from 'lucide-react';
 import { MarketingService } from '../types/marketing';
+import { COMPANY_INFO } from '../data/marketingData';
 
 interface ServiceDetailModalProps {
   service: MarketingService | null;
@@ -92,13 +93,16 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
 
           {/* Action Button */}
           <div className="pt-2">
-            <button
-              onClick={() => onApplyService(service)}
+            <a
+              href={COMPANY_INFO.kakaoChatUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={onClose}
               className="w-full bg-[#1B1D1A] hover:bg-black text-white font-extrabold py-3.5 px-6 rounded-full text-base transition-all duration-150 flex items-center justify-center gap-2 cursor-pointer shadow-md"
             >
               <span>이 프로그램으로 무료 진단 신청하기</span>
               <ArrowRight className="w-4 h-4 text-[#B4D82E]" />
-            </button>
+            </a>
           </div>
         </div>
       </div>

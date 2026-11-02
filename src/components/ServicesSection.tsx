@@ -7,8 +7,10 @@ import {
   ArrowRight,
   Check
 } from 'lucide-react';
-import { SERVICES } from '../data/marketingData';
+import { SERVICES, COMPANY_INFO } from '../data/marketingData';
 import { MarketingService } from '../types/marketing';
+import { ServiceCardGif } from './animations/ServiceCardGif';
+import { AmbientDoctorVideoBg } from './AmbientDoctorVideoBg';
 
 interface ServicesSectionProps {
   onSelectService: (service: MarketingService) => void;
@@ -61,8 +63,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   };
 
   return (
-    <section id="services" className="bg-white">
-      <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-20">
+    <section id="services" className="relative bg-white overflow-hidden">
+      {/* Ambient Faint Doctor Flash Background */}
+      <AmbientDoctorVideoBg variant="light" />
+
+      <div className="relative z-10 max-w-[1200px] mx-auto px-6 py-16 md:py-20">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
@@ -158,7 +163,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                   >
                     {service.badge}
                   </div>
-                  {getServiceIcon(service.iconName, !isDarkHeader)}
+                  <ServiceCardGif type={service.iconName} isDarkHeader={isDarkHeader} />
                 </div>
 
                 {/* Body Content */}
@@ -214,12 +219,14 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
               병원 상권과 현재 경쟁 상황을 분석하여 불필요한 비용 없는 최적의 마케팅 믹스를 무료로 진단해 드립니다.
             </p>
           </div>
-          <button
-            onClick={onContactClick}
-            className="w-full md:w-auto bg-[#1B1D1A] hover:bg-black text-white font-extrabold px-6 py-3 rounded-full text-sm transition-all whitespace-nowrap cursor-pointer shrink-0"
+          <a
+            href={COMPANY_INFO.kakaoChatUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full md:w-auto bg-[#1B1D1A] hover:bg-black text-white font-extrabold px-6 py-3 rounded-full text-sm transition-all whitespace-nowrap cursor-pointer shrink-0 inline-flex items-center justify-center"
           >
             무료 진단 리포트 받기
-          </button>
+          </a>
         </div>
       </div>
     </section>

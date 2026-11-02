@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calculator, Check, ArrowRight, Sparkles } from 'lucide-react';
+import { COMPANY_INFO } from '../data/marketingData';
 
 interface EstimatorSectionProps {
   onApplyPlan: (planSummary: {
@@ -63,9 +64,10 @@ export const EstimatorSection: React.FC<EstimatorSectionProps> = ({ onApplyPlan 
     <section className="bg-white border-t border-[#E3E7D6]">
       <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-20">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-1.5 bg-[#F2F8D9] text-[#2F3A0B] px-3.5 py-1.5 rounded-full text-xs font-bold mb-3">
+          <div className="inline-flex items-center gap-2 bg-[#F2F8D9] text-[#2F3A0B] px-4 py-1.5 rounded-full text-xs font-bold mb-3 border border-[#B4D82E]/60 shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-[#5E7F00] animate-ping" />
             <Calculator className="w-3.5 h-3.5 text-[#5E7F00]" />
-            <span>30초 인터랙티브 계산기</span>
+            <span>30초 병원 맞춤 인터랙티브 진단기</span>
           </div>
           <h2 className="text-3xl md:text-[34px] font-black tracking-[-0.025em] text-[#1B1D1A]">
             우리 병원에 꼭 맞는 마케팅 플랜 진단
@@ -212,15 +214,17 @@ export const EstimatorSection: React.FC<EstimatorSectionProps> = ({ onApplyPlan 
             </div>
 
             <div className="pt-2 border-t border-neutral-100">
-              <button
-                onClick={handleApply}
+              <a
+                href={COMPANY_INFO.kakaoChatUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full bg-[#B4D82E] hover:bg-[#a5cb23] text-[#1B1D1A] font-extrabold py-3.5 px-4 rounded-full text-sm transition-all duration-150 flex items-center justify-center gap-2 cursor-pointer shadow-xs"
               >
                 <span>이 플랜으로 무료 진단 신청하기</span>
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
               <p className="text-[11px] text-center text-neutral-400 mt-2">
-                * 상담 신청 시 위 선택 내용이 자동으로 전달됩니다.
+                * 클릭 시 카카오톡 오픈채팅으로 1:1 맞춤 상담이 바로 연결됩니다.
               </p>
             </div>
           </div>

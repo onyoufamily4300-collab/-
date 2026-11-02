@@ -1,6 +1,8 @@
 import React from 'react';
 import { ShieldCheck, Sparkles, TrendingUp, Users, CheckCircle2 } from 'lucide-react';
 import { WHY_ITEMS } from '../data/marketingData';
+import { MedicalShieldGif } from './animations/MedicalShieldGif';
+import { AmbientDoctorVideoBg } from './AmbientDoctorVideoBg';
 
 export const WhySection: React.FC = () => {
   const getIcon = (type: string) => {
@@ -37,19 +39,19 @@ export const WhySection: React.FC = () => {
   };
 
   return (
-    <section id="why" className="bg-[#F2F8D9] border-y border-[#E3E7D6]">
-      <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-20 lg:py-24">
+    <section id="why" className="relative bg-[#F2F8D9] border-y border-[#E3E7D6] overflow-hidden">
+      {/* Ambient Faint Doctor Flash Background */}
+      <AmbientDoctorVideoBg variant="soft-lime" />
+
+      <div className="relative z-10 max-w-[1200px] mx-auto px-6 py-16 md:py-20 lg:py-24">
         {/* Section Header */}
-        <div className="mb-12">
+        <div className="mb-10">
           <div className="text-[#5E7F00] font-bold text-sm tracking-wider uppercase mb-1">
             WHY MAXIMIZER
           </div>
           <h2 className="text-3xl md:text-[36px] font-black tracking-[-0.025em] text-[#1B1D1A]">
             병원 마케팅은 달라야 하니까요
           </h2>
-          <p className="text-base text-[#5B5F58] mt-2 max-w-xl">
-            일반 쇼핑몰이나 프랜차이즈와 다른 병원만의 엄격한 의료법 규정과 환자 신뢰 메커니즘을 가장 잘 이해합니다.
-          </p>
         </div>
 
         {/* 4 Cards Grid */}
@@ -59,10 +61,8 @@ export const WhySection: React.FC = () => {
               key={idx}
               className="bg-white rounded-[24px] p-7 md:p-8 flex flex-col gap-4 border border-[#E3E7D6]/70 shadow-xs hover:shadow-md transition-all duration-200"
             >
-              {/* Icon Circle */}
-              <div className="w-14 h-14 rounded-full bg-[#B4D82E] flex items-center justify-center shrink-0 shadow-xs">
-                {getIcon(item.icon)}
-              </div>
+              {/* Animated GIF-Style Icon */}
+              <MedicalShieldGif type={item.icon as any} />
 
               {/* Title */}
               <h3 className="text-xl md:text-[22px] font-extrabold text-[#1B1D1A] tracking-[-0.015em] leading-snug">

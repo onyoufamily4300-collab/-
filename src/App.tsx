@@ -18,7 +18,7 @@ import { Footer } from './components/Footer';
 import { ServiceDetailModal } from './components/ServiceDetailModal';
 import { QuickFloatCTA } from './components/QuickFloatCTA';
 import { MarketingService } from './types/marketing';
-import { SERVICES } from './data/marketingData';
+import { SERVICES, COMPANY_INFO } from './data/marketingData';
 
 export default function App() {
   const [selectedServiceForModal, setSelectedServiceForModal] = useState<MarketingService | null>(null);
@@ -37,13 +37,20 @@ export default function App() {
   };
 
   const handleContactClick = () => {
-    scrollToSection('contact');
+    window.open(COMPANY_INFO.kakaoChatUrl, '_blank', 'noopener,noreferrer');
   };
 
   const handleCategorySelect = (categoryId: string) => {
     const matched = SERVICES.find((s) => s.id === categoryId);
     if (matched) {
       setSelectedServiceForModal(matched);
+    } else if (categoryId === 'place') {
+      const branding = SERVICES.find((s) => s.id === 'branding');
+      if (branding) {
+        setSelectedServiceForModal(branding);
+      } else {
+        scrollToSection('services');
+      }
     } else if (categoryId === 'law') {
       scrollToSection('why');
     } else {
@@ -53,10 +60,7 @@ export default function App() {
 
   const handleApplyFromModal = (service: MarketingService) => {
     setSelectedServiceForModal(null);
-    setPrefillData({
-      serviceTitle: `${service.category} - ${service.title}`
-    });
-    scrollToSection('contact');
+    window.open(COMPANY_INFO.kakaoChatUrl, '_blank', 'noopener,noreferrer');
   };
 
   const handleApplyFromEstimator = (plan: {
@@ -64,18 +68,13 @@ export default function App() {
     stage: string;
     channels: string[];
   }) => {
-    setPrefillData({
-      dept: plan.dept,
-      stage: plan.stage,
-      channels: plan.channels
-    });
-    scrollToSection('contact');
+    window.open(COMPANY_INFO.kakaoChatUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
     <div id="top" className="min-h-screen bg-white text-[#1B1D1A] font-sans selection:bg-[#B4D82E] selection:text-[#1B1D1A]">
       {/* 1. Top Announcement Bar */}
-      <AnnouncementBar onApplyClick={handleContactClick} />
+      <AnnouncementBar />
 
       {/* 2. Primary Navigation Header */}
       <Header onContactClick={handleContactClick} />
@@ -85,6 +84,7 @@ export default function App() {
         <HeroSection
           onDiagnoseClick={handleContactClick}
           onExploreClick={() => scrollToSection('services')}
+          onSelectCategory={handleCategorySelect}
         />
 
         {/* 4. Quick Category Icons */}
@@ -122,8 +122,8 @@ export default function App() {
         onApplyService={handleApplyFromModal}
       />
 
-      {/* 14. Floating Action Consultation Button */}
-      <QuickFloatCTA onContactClick={handleContactClick} />
+      {/* 14. Floating KakaoTalk Open Chat Button */}
+      <QuickFloatCTA />
     </div>
   );
 }

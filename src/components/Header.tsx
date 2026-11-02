@@ -69,22 +69,26 @@ export const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
 
         {/* Zone 3: Primary Action */}
         <div className="hidden md:flex items-center gap-3 shrink-0">
-          <button
-            onClick={onContactClick}
-            className="bg-[#B4D82E] hover:bg-[#a6ca24] text-[#1B1D1A] font-extrabold text-[15px] px-5 py-2.5 rounded-full transition-all duration-150 shadow-xs hover:shadow-md cursor-pointer whitespace-nowrap shrink-0 active:scale-95"
+          <a
+            href={COMPANY_INFO.kakaoChatUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#B4D82E] hover:bg-[#a6ca24] text-[#1B1D1A] font-extrabold text-[15px] px-5 py-2.5 rounded-full transition-all duration-150 shadow-xs hover:shadow-md cursor-pointer whitespace-nowrap shrink-0 active:scale-95 inline-flex items-center justify-center"
           >
             상담 신청
-          </button>
+          </a>
         </div>
 
         {/* Mobile menu button */}
         <div className="flex md:hidden items-center gap-2">
-          <button
-            onClick={onContactClick}
-            className="bg-[#B4D82E] text-[#1B1D1A] font-bold text-xs px-3.5 py-1.5 rounded-full whitespace-nowrap"
+          <a
+            href={COMPANY_INFO.kakaoChatUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#B4D82E] text-[#1B1D1A] font-bold text-xs px-3.5 py-1.5 rounded-full whitespace-nowrap inline-flex items-center justify-center"
           >
             상담 신청
-          </button>
+          </a>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 text-[#1B1D1A] hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
@@ -129,15 +133,15 @@ export const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
             문의하기
           </button>
           <div className="pt-2 flex flex-col gap-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onContactClick();
-              }}
-              className="w-full bg-[#B4D82E] text-[#1B1D1A] font-extrabold py-3 rounded-full text-center"
+            <a
+              href={COMPANY_INFO.kakaoChatUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full bg-[#B4D82E] text-[#1B1D1A] font-extrabold py-3 rounded-full text-center inline-block"
             >
               무료 진단 상담 신청하기
-            </button>
+            </a>
             <a
               href={`tel:${COMPANY_INFO.phone}`}
               className="flex items-center justify-center gap-2 w-full py-2.5 text-sm font-semibold text-neutral-600 bg-neutral-100 rounded-full"

@@ -9,6 +9,7 @@ export const COMPANY_INFO = {
   phoneDisplay: '010-7552-5994',
   email: 'malibu5656@naver.com',
   hours: '오전 10시 ~ 오후 9시 (주말·공휴일 상담 접수 가능)',
+  kakaoChatUrl: 'https://open.kakao.com/o/sa5jpiVh',
   address: '대한민국 서울특별시 강남구 테헤란로 (병원 마케팅 전담 연구소)',
   copyright: '© 2026 마케팅맥시마이져. All rights reserved.',
 };
